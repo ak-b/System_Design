@@ -14,7 +14,7 @@ The repo contains code and important system design concepts.
 + Section 12: Messages & Pub-Sub
 + Section 13: Smaller Essentials
 
-** Section 1: Networks and Protocols **
+**Section 1: Networks and Protocols**
 
 "Protocols" is a fancy word that has a meaning in English totally independent of computer science. It means a system of rules and regulations that govern something. A kind of "official procedure" or "official way something must be done".
 
