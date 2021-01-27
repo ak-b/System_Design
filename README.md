@@ -1,5 +1,5 @@
 # System_Design
-The repo contains code and important system design concepts.
+The repo contains code and important system design concepts.Topics covered:
 + Section 1: Networks & Protocols (IP, DNS, HTTP, TCP etc)
 + Section 2: Storage, Latency & Throughput
 + Section 3: Availability
@@ -16,50 +16,18 @@ The repo contains code and important system design concepts.
 
 **Section 1: Networks and Protocols**
 
-"Protocols" is a fancy word that has a meaning in English totally independent of computer science. It means a system of rules and regulations that govern something. A kind of "official procedure" or "official way something must be done".
-
-For people to connect to machines and code that communicate with each other, they need a network over which such communication can take place. But the communication also needs some rules, structure, and agreed-upon procedures.
-
-Thus, network protocols are protocols that govern how machines and software communicate over a given network. An example of a network is our beloved world wide web.
-
-You may have heard of the most common network protocols of the internet era - things like HTTP, TCP/IP etc. Let's break them down into basics.
+"Protocols" is a fancy word that has a meaning in English totally independent of computer science. It means a system of rules and regulations that govern something. A kind of "official procedure" or "official way something must be done".For people to connect to machines and code that communicate with each other, they need a network over which such communication can take place. But the communication also needs some rules, structure, and agreed-upon procedures.Thus, network protocols are protocols that govern how machines and software communicate over a given network. An example of a network is our beloved world wide web.You may have heard of the most common network protocols of the internet era - things like HTTP, TCP/IP etc. Let's break them down into basics.
 
 IP - Internet Protocol
 Think of this as the fundamental layer of protocols. It is the basic protocol that instructs us on how almost all communication across internet networks must be implemented.
 
-Messages over IP are often communicated in "packets", which are small bundles of information (2^16 bytes). Each packet has an essential structure made up of two components: the Header and the Data.
-
-The header contains "meta" data about the packet and its data. This metadata includes information such as the IP address of the source (where the packet comes from) and the destination IP address (destination of the packet). Clearly, this is fundamental to being able to send information from one point to another - you need the "from" and "to" addresses.  
-
-And an IP Address is a numeric label assigned to each device connected to a computer network that uses the Internet Protocol for communication. There are public and private IP addresses, and there are currently two versions. The new version is called IPv6 and is increasingly being adopted because IPv4 is running out of numerical addresses.
-
-The other protocols we will consider in this post are built on top of IP,  just like your favorite software language has libraries and frameworks built on top of it.  
+Messages over IP are often communicated in "packets", which are small bundles of information (2^16 bytes). Each packet has an essential structure made up of two components: the Header and the Data.The header contains "meta" data about the packet and its data. This metadata includes information such as the IP address of the source (where the packet comes from) and the destination IP address (destination of the packet). Clearly, this is fundamental to being able to send information from one point to another - you need the "from" and "to" addresses. And an IP Address is a numeric label assigned to each device connected to a computer network that uses the Internet Protocol for communication. There are public and private IP addresses, and there are currently two versions. The new version is called IPv6 and is increasingly being adopted because IPv4 is running out of numerical addresses.The other protocols we will consider in this post are built on top of IP,  just like your favorite software language has libraries and frameworks built on top of it.  
 
 TCP - Transmission Control Protocol
-TCP is a utility built on top of IP. As you may know from reading my posts, I firmly believe you need to understand why something was invented in order to truly understand what it does.
-
-TCP was created to solve a problem with IP. Data over IP is typically sent in multiple packets because each packet is fairly small (2^16 bytes). Multiple packets can result in (A) lost or dropped packets and (B) disordered packets, thus corrupting the transmitted data.  TCP solves both of these by guaranteeing transmission of packets in an ordered way.  
-
-Being built on top of IP, the packet has a header called the TCP header in addition to the IP header. This TCP header contains information about the ordering of packets, and the number of packets and so on. This ensures that the data is reliably received at the other end. It is generally referred to as TCP/IP because it is built on top of IP.
-
-TCP needs to establish a connection between source and destination before it transmits the packets, and it does this via a "handshake". This connection itself is established using packets where the source informs the destination that it wants to open a connection, and the destination says OK, and then a connection is opened.
-
-This, in effect, is what happens when a server "listens" at a port - just before it starts to listen there is a handshake, and then the connection is opened (listening starts). Similarly, one sends the other a message that it is about to close the connection, and that ends the connection.  
+TCP is a utility built on top of IP. As you may know from reading my posts, I firmly believe you need to understand why something was invented in order to truly understand what it does.TCP was created to solve a problem with IP. Data over IP is typically sent in multiple packets because each packet is fairly small (2^16 bytes). Multiple packets can result in (A) lost or dropped packets and (B) disordered packets, thus corrupting the transmitted data.  TCP solves both of these by guaranteeing transmission of packets in an ordered way.Being built on top of IP, the packet has a header called the TCP header in addition to the IP header. This TCP header contains information about the ordering of packets, and the number of packets and so on. This ensures that the data is reliably received at the other end. It is generally referred to as TCP/IP because it is built on top of IP.TCP needs to establish a connection between source and destination before it transmits the packets, and it does this via a "handshake". This connection itself is established using packets where the source informs the destination that it wants to open a connection, and the destination says OK, and then a connection is opened.This, in effect, is what happens when a server "listens" at a port - just before it starts to listen there is a handshake, and then the connection is opened (listening starts). Similarly, one sends the other a message that it is about to close the connection, and that ends the connection.  
 
 HTTP - Hyper Text Transfer Protocol
-HTTP is a protocol that is an abstraction built on top of TCP/IP. It introduces a very important pattern called the request-response pattern, specifically for client-server interactions.  
-
-A client is simply a machine or system that requests information, and a server is the machine or system that responds with information. A browser is a client, and a web-server is a server.  When a server requests data from another server then the first server is also a client, and the second server is the server (I know, tautologies).
-
-So this request-response cycle has its own rules under HTTP and this standardizes how information is transmitted across the internet.  
-
-At this level of abstraction we typically don't need to worry too much about IP and TCP. However, in HTTP, requests and responses have headers and bodies too, and these contain data that can be set by the developer.
-
-HTTP requests and responses can be thought of as messages with key-value pairs, very similar to objects in JavaScript and dictionaries in Python, but not the same.
-
-Below is an illustration of the content, and key-value pairs in HTTP request and response messages.
-
-
+HTTP is a protocol that is an abstraction built on top of TCP/IP. It introduces a very important pattern called the request-response pattern, specifically for client-server interactions.  A client is simply a machine or system that requests information, and a server is the machine or system that responds with information. A browser is a client, and a web-server is a server.  When a server requests data from another server then the first server is also a client, and the second server is the server (I know, tautologies).So this request-response cycle has its own rules under HTTP and this standardizes how information is transmitted across the internet.  At this level of abstraction we typically don't need to worry too much about IP and TCP. However, in HTTP, requests and responses have headers and bodies too, and these contain data that can be set by the developer.HTTP requests and responses can be thought of as messages with key-value pairs, very similar to objects in JavaScript and dictionaries in Python, but not the same.Below is an illustration of the content, and key-value pairs in HTTP request and response messages.
 source: https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages
 HTTP also comes with some "verbs" or "methods" which are commands that give you an idea of what sort of operation is intended to be performed. For example, the common HTTP methods are "GET", "POST", "PUT", "DELETE" and "PATCH", but there are more. In the above picture, look for the HTTP verb in the start line.
 
